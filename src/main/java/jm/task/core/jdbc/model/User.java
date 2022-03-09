@@ -61,9 +61,9 @@ public class User {
     @Override
     public String toString() {
         return getClass().getSimpleName() +
-                "{id: " + id +
+                " {id: " + id +
                 ", name: " + name +
                 ", lastname: " + lastName +
-                ", age " + age + " }";
+                ", age " + age + "}" + "\n";
     }
 }

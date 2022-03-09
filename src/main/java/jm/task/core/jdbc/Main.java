@@ -1,32 +1,25 @@
 package jm.task.core.jdbc;
 
 import jm.task.core.jdbc.model.User;
+import jm.task.core.jdbc.service.UserService;
+import jm.task.core.jdbc.service.UserServiceImpl;
 import jm.task.core.jdbc.util.Util;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Util util = new Util();
-
-        String query = "select * from users";
-        try {
-            Statement statement = util.getConnection().createStatement();
-            ResultSet resultSet = statement.executeQuery(query);
-
-            while (resultSet.next()) {
-                User user = new User();
-                user.setId(resultSet.getLong("id"));
-                user.setName(resultSet.getString("name"));
-                user.setLastName(resultSet.getString("lastname"));
-                user.setAge(resultSet.getByte("age"));
-
-                System.out.println(user);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        UserService userService = new UserServiceImpl();
+        userService.createUsersTable();
+        userService.saveUser("Jhon", "Jhonson", (byte) 43);
+        userService.saveUser("Mia", "Bush", (byte) 23);
+        userService.saveUser("Vladimir", "Lukashenko", (byte) 69);
+        userService.saveUser("Bob", "Snader", (byte) 13);
+        System.out.println(userService.getAllUsers());
+        userService.cleanUsersTable();
+        userService.dropUsersTable();
     }
 }
