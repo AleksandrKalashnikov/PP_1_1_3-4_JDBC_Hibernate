@@ -30,6 +30,9 @@ public class UserDaoHibernateImpl extends Util implements UserDao {
             query.executeUpdate();
             transaction.commit();
         } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
             e.printStackTrace();
         }
     }
@@ -45,6 +48,9 @@ public class UserDaoHibernateImpl extends Util implements UserDao {
             query.executeUpdate();
             transaction.commit();
         } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
             e.printStackTrace();
         }
     }
@@ -65,6 +71,9 @@ public class UserDaoHibernateImpl extends Util implements UserDao {
             System.out.println("User с именем - " + name + " добавлен в базу данных");
             transaction.commit();
         } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
             e.printStackTrace();
         }
     }
@@ -82,6 +91,9 @@ public class UserDaoHibernateImpl extends Util implements UserDao {
             session.delete(user);
             transaction.commit();
         } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
             e.printStackTrace();
         }
     }
@@ -98,6 +110,9 @@ public class UserDaoHibernateImpl extends Util implements UserDao {
             userList = query.list();
             transaction.commit();
         } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
             e.printStackTrace();
         }
         return userList;
@@ -114,6 +129,9 @@ public class UserDaoHibernateImpl extends Util implements UserDao {
             query.executeUpdate();
             transaction.commit();
         } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
             e.printStackTrace();
         }
     }
