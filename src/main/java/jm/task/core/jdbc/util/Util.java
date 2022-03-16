@@ -16,4 +16,13 @@ public class Util {
         }
         return connection;
     }
+
+    public static Connection connectionClose (Connection connection) {
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return connection;
+    }
 }

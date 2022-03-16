@@ -1,7 +1,9 @@
 package jm.task.core.jdbc;
 
+import jm.task.core.jdbc.dao.UserDaoJDBCImpl;
 import jm.task.core.jdbc.service.UserService;
 import jm.task.core.jdbc.service.UserServiceImpl;
+import jm.task.core.jdbc.util.Util;
 
 public class Main {
     public static void main(String[] args) {
@@ -11,8 +13,9 @@ public class Main {
         userService.saveUser("Mia", "Bush", (byte) 23);
         userService.saveUser("Vladimir", "Lukashenko", (byte) 69);
         userService.saveUser("Bob", "Snader", (byte) 13);
-        System.out.println(userService.getAllUsers());
+        userService.getAllUsers();
         userService.cleanUsersTable();
         userService.dropUsersTable();
+        Util.connectionClose(UserDaoJDBCImpl.getConnection());
     }
 }
