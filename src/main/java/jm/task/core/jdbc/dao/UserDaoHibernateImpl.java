@@ -2,6 +2,7 @@ package jm.task.core.jdbc.dao;
 
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.util.Util;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -9,8 +10,9 @@ import org.hibernate.query.Query;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDaoHibernateImpl extends Util implements UserDao {
-    private User user = new User();
+import static jm.task.core.jdbc.util.Util.getSessionFactory;
+
+public class UserDaoHibernateImpl implements UserDao {
 
     public UserDaoHibernateImpl() {
 
@@ -56,6 +58,7 @@ public class UserDaoHibernateImpl extends Util implements UserDao {
         Transaction transaction = null;
         try (Session session = getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
+            User user = new User();
             user.setName(name);
             user.setLastName(lastName);
             user.setAge(age);
@@ -75,6 +78,7 @@ public class UserDaoHibernateImpl extends Util implements UserDao {
         Transaction transaction = null;
         try (Session session = getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
+            User user;
             user = session.load(User.class, id);
             session.delete(user);
             transaction.commit();
@@ -93,7 +97,6 @@ public class UserDaoHibernateImpl extends Util implements UserDao {
         try (Session session = getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             userList = session.createQuery("SELECT u FROM User u", User.class).getResultList();
-            System.out.println(userList);
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {

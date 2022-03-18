@@ -24,7 +24,7 @@ public class User {
     private String lastName;
 
     @Column(name = "age")
-    private Byte age;
+    private  Byte age;
 
     public User() {
 
@@ -41,10 +41,12 @@ public class User {
     }
 
     public void setId(Long id) {
+
         this.id = id;
     }
 
     public String getName() {
+
         return name;
     }
 
@@ -57,6 +59,7 @@ public class User {
     }
 
     public void setLastName(String lastName) {
+
         this.lastName = lastName;
     }
 
@@ -64,7 +67,8 @@ public class User {
         return age;
     }
 
-    public void setAge(Byte age) { this.age = age;}
+    public void setAge(Byte age) {
+        this.age = age;}
 
     @Override
     public String toString() {

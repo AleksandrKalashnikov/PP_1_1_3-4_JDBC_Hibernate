@@ -43,4 +43,9 @@ public class Util {
         return sessionFactory;
     }
 
+    public static void sessionFactoryClose(SessionFactory sessionFactory) {
+
+        sessionFactory.close();
+    }
+
 }
