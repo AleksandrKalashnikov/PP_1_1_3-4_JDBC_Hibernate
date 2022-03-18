@@ -16,6 +16,6 @@ public class Main {
         userService.getAllUsers();
         userService.cleanUsersTable();
         userService.dropUsersTable();
-        Util.connectionClose(UserDaoJDBCImpl.getConnection());
+        Util.connectionClose(Util.getConnection());
     }
 }
