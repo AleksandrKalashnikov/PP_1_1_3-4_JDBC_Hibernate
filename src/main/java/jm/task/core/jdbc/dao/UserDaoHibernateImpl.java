@@ -10,7 +10,6 @@ import org.hibernate.query.Query;
 import java.util.ArrayList;
 import java.util.List;
 
-import static jm.task.core.jdbc.util.Util.getSessionFactory;
 
 public class UserDaoHibernateImpl implements UserDao {
     SessionFactory sessionFactory = Util.getSessionFactory();
